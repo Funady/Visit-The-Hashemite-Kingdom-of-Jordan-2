@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/TIJ.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="../img/Favicon-1.png">
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: roboto, arial;
+        margin: 0;
+        font-size: 10pt;
+        background-color: rgb(223, 219, 219);
+        overflow-x: hidden;
+      }
+
+      @media only screen and (min-width: 481px) and (max-width: 768px){
+        /* vertical tablets and horizontal mobiles */
+        .header#info {
+          background-color: orangered !important;
+        }
+      }
+
+      @media only screen and (min-width: 769px) and (max-width: 1279px){
+        /* horizontal tablets and small screens */
+        .header#info {
+          background-color: orange !important;
+        }
+      }
+
+      @media only screen and (min-width: 481px) {
+        /* laptops and more */
+        .header#small {
+          display: none;
+        }
+      }
+
+      @media only screen and (max-width: 480px){
+        /* extra small screens i.e. mobile */
+        body{
+          background-color: rgb(247, 242, 242);
+        }
+        .header#info{
+          display: none !important;
+        }
+
+        .header#nav{
+          display: none !important;
+        }
+
+        .header#small{
+          display: flex;
+          flex-direction: column;
+
+          height: 70px;
+          background-color: rgb(43, 41, 41);
+        }
+        .header#small .upper-menu{
+          display: flex;
+          flex-direction: row;
+        }
+
+        .menu-content {
+          font-family: Roboto, arial; 
+          padding: 0 0 0 30px;
+          max-height: 0;
+          overflow: hidden;
+        }
+        .collapsible-menu {
+          /* background-color: grey; */
+          padding: 0px 30px;
+          height: 100vh;
+        }
+        .collapsible-menu ul {
+          list-style-type: none;
+          padding: 0;
+        }
+        .collapsible-menu a {
+          display:block;
+          padding: 0.6em;
+          font-size: 1.94em;
+          text-decoration: none;
+        }
+
+        .collapsible-menu ul li a {
+          color: white;
+        }
+
+        label.collapsible-menu-label  {
+          font-family: roboto, arial;
+          font-size: 36px;
+          color: white;
+          display: block;
+          cursor: pointer;
+          background: url(../img/white_Hamburger-Menu.png) no-repeat left center;
+          background-size: 30%;
+          padding: 10px 0 10px 36px;
+        }
+
+        input#menu {
+          display: none;
+        }
+
+        input:checked +label {
+          background-image: url(../img/white_close.png);
+        }
+
+        input:checked ~ label {
+          background-image: url(../img/white_close.png);
+          width: 52px;
+        }
+        input:checked ~ .menu-content {
+          height: 100vh;
+          max-height: 100vh;
+          width: 60vw;
+        }
+
+        .header#small:has(input:checked){height: 100vh !important}
+        .header-small-logo{height: 59px;padding-top: 6px;padding-right: 16px;}
+        .header .collapsible-menu label span{font-size: 1.8rem}
+        .header#small:has(input:checked) .menu-content{overflow: visible !important}
+        .header#small .left-side{
+          padding-left: 1.8em;
+          min-width: calc(100vw / 3);
+          width: calc(100vw / 3);
+          /* background: red; */
+          padding-left: 36px;
+          box-sizing: border-box;
+        }
+        .header#small .logo-container{
+          min-width: calc(calc(100vw / 3) *2);
+          /* background: yellow; */
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-end;
+          padding-right: 16px;
+          box-sizing: border-box;
+        }
+
+        .wrapper-small{
+          margin: auto;
+          width: 400px;
+        }
+
+        .wrapper-small ul{
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .wrapper-small label{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          padding: 10px;
+          color: white;
+          font-family: roboto, arial;
+          font-size: 1.94em;
+        /*   border: 1px solid #fff; */
+        }
+
+        /* .wrapper-small label:hover{
+          background: #26C281;
+        } */
+
+        .wrapper-small label.last{
+          border-bottom: 1px solid #fff;
+        }
+
+        .wrapper-small ul ul {
+          margin-left: 15px;
+        }
+
+        .wrapper-small ul ul li{
+          margin-left: 0;
+          padding: 6px 0;
+          font-size: 0.7rem;
+        }
+
+        .wrapper-small ul ul li a {
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+          display: block;
+          padding: 6px 0;
+        }
+
+        .wrapper-small ul ul li a:hover {
+          padding-left: 10px;
+          color: #f0f0f0;
+        }
+
+        .wrapper-small input[type="checkbox"] {
+          position: absolute;
+          left: -9999px;
+        }
+
+        .wrapper-small input[type="checkbox"] ~ ul {
+          max-height: 0;
+          overflow: hidden;
+          transform: scaleY(0);
+          transform-origin: top;
+        }
+
+        .wrapper-small input[type="checkbox"]:checked ~ ul {
+          max-height: 100vh;
+          transform: scaleY(1);
+          transition: transform 0.2s ease-out;
+        }
+
+        
+
+        .wrapper-small input[type="checkbox"]:checked + label{
+          background: rgb(43, 41, 41);
+          width: 100vw;
+          /* border-bottom: 1px solid #fff; */
+        }
+      }
+
+      .header#info {
+        --main-bg-color: black;
+        background-color: rgb(43, 41, 41);
+        
+        height: 100px;
+        /* min-width: 1366px; */
+
+        display: flex;
+        flex-direction: row;
+        justify-content:center; 
+      }
+
+      .container{
+        width: calc(100vw - 10vw);
+        display: flex;
+        flex-direction: row;
+      }  
+
+      .first-section#info {
+        display: flex;
+        /* min-width: 313px; */
+        width: calc(calc(100vw - 10vw) / 3) ;
+        position: relative;
+      }
+
+      .first-section#info::before {
+        content: '';
+        position: absolute;
+        /* background-color: rgb(136, 19, 19); */
+        width: 2px;
+        height: 65%;
+        bottom: 14pt;
+        right:55px;
+      }
+
+      .second-section#info {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        /* min-width: 413px; */
+        width: calc(calc(100vw - 10vw) / 3) ;
+        justify-content: center;
+        align-items: center;
+        /* margin-left: 10px; */
+        margin: 0 10px;
+        position: relative;
+      }
+
+      .second-section#info::before {
+        content: '';
+        position: absolute;
+        /* background-color: rgb(136, 19, 19); */
+        width: 2px;
+        height: 60%;
+        bottom: 14pt;
+        right: 0px;
+      }
+
+      .weather-symbol-wrapper{
+        display: flex;
+        flex-direction: row;
+        width: 30%;
+      }
+      
+      .weather-symbol {
+        display: flex;
+        flex-direction: row;
+        /* height: 80px;
+        width: 80px; */
+        max-width: 70%;
+        object-fit: contain;
+        justify-content: center;
+      }
+
+      .weather-info {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+      }
+
+      .weather-location {
+        color: rgb(247, 242, 242);
+      }
+
+      .weather-date {
+        color: rgb(194, 183, 183);
+        font-weight: 600;
+      }
+
+      .temperature-data {
+        font-size: 30px;
+        height: 30px;
+        margin: 0;
+        color: rgb(247, 242, 242);
+      }
+
+      .third-section#info {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        /* min-width: 388px; */
+        width: calc(calc(calc(100vw - 10vw) / 3) / 2);
+        justify-content: center;
+        /* margin-left: 10px; */
+        margin: 12px 10px;
+        position: relative;
+      }
+
+      .third-section#info::before {
+        content: '';
+        position: absolute;
+        /* background-color: rgb(136, 19, 19); */
+        width: 2px;
+        height: 60%;
+        bottom: 14pt;
+        right: -35px;
+      }
+
+      .contact-us-title {
+        position: absolute;
+        top: 12px;
+        color: white;
+      }
+
+      .phone-number {
+        position: absolute;
+        top: 30px;
+        color: white;
+      }
+
+      .contact-email {
+        position: absolute;
+        top: 48px;
+        color: white;
+      }
+
+      .fourth-section#info {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        /* min-width: 248px; */
+        width: calc(calc(calc(100vw - 10vw) / 3) / 2);
+        justify-content: center;
+        margin-left: 10px;
+      }
+
+      .language-button {
+        position: absolute;
+        top: 12px;
+        color: white;
+      }
+
+      .english-language {
+        position: absolute;
+        top: 30px;
+        color: white;
+      }
+
+      .arabic-language {
+        position: absolute;
+        top: 48px;
+        color: white;
+      }
+
+      nav {
+        width: calc(100vw - 10vw);
+      }
+      
+      .first-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .home-icon {
+        height: 4.5em;
+      }
+
+      .second-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .third-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .fourth-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .fifth-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-titles {
+        font-family: roboto, arial;
+        font-size: 1.3em;
+        color: rgb(95, 91, 91);
+        text-decoration: none;
+        margin: 25px 20px;
+      }
+
+      .header#nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* width: 100%;
+        min-width: 1150px; */
+        height: 70px;
+        background-color: white;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;
+      }
+
+      .main-menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: auto;
+        height: 100%;
+        margin-top: 0px;
+        margin-bottom: 0px; 
+      }
+
+      .header#nav nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 80%;
+        min-width: 1000px;
+        height: 100%;
+        position: relative;
+        width: calc(100vw - 10vw);
+      }
+
+      li {
+        list-style: none;
+      }
+
+      .main-menu > li {
+        height: 100%;
+        transition: background-color 0.5s;
+      }
+
+      .main-menu > li:hover:not(:first-child) {
+        background-color: rgb(168, 192, 211);
+      }
+
+      .main-menu > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 0 30px;
+      }
+
+      .main-menu > li > a > i {
+        font-size: 0.8rem;
+        margin-left: 10px;
+      }
+
+      .mega-dropdown-1 {
+        display: flex;
+        height: 300px;
+        width: 100%;           
+        max-width: 1200px;     
+        background-color: whitesmoke;
+        position: absolute;
+        left: 0;               
+        top: 100%;             
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 4px 3px rgba(0,0,0,0.2);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s, top 0.5s;
+        pointer-events: auto;
+        z-index: 998;
+      }
+
+      .main-menu > li:hover .mega-dropdown-1, 
+      .mega-dropdown-1:hover {
+        top: 100%;
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .mega-submenu-1 {
+        width: 25%;
+        height: 80%;
+        margin: 20px;
+      }
+
+      .mega-submenu-1:not(:first-child) {
+        border-left: 1px solid rgba(129,174,211,0.5);
+      }
+
+      .mega-submenu-1 h5 {
+        display: block;
+        font-size: 0.9rem;
+        color: steelblue;
+        margin-bottom: 15px;
+      }
+
+      .mega-submenu-1 li a {
+        display: inline-block;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        text-decoration: none;
+        color: rgb(102, 99, 99);
+        transition: padding 0.5s, color 0.5s;
+      }
+
+      .mega-submenu-1 li a:hover {
+        color: rgb(190, 118, 50);
+        padding-left: 50px;
+      }
+
+      .mega-dropdown-2 {
+        display: flex;
+        height: 300px;
+        width: 100%;           
+        max-width: 1200px;     
+        background-color: whitesmoke;
+        position: absolute;
+        left: 0;               
+        top: 100%;             
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 4px 3px rgba(0,0,0,0.2);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s, top 0.5s;
+        pointer-events: auto;
+        z-index: 998;
+      }
+
+      .main-menu > li:hover .mega-dropdown-2, 
+      .mega-dropdown-2:hover {
+        top: 100%;
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .mega-submenu-2 {
+        width: 25%;
+        height: 80%;
+        margin: 20px;
+      }
+
+      .mega-submenu-2:not(:first-child) {
+        border-left: 1px solid rgba(129,174,211,0.5);
+      }
+
+      .mega-submenu-2 h5 {
+        display: block;
+        font-size: 0.9rem;
+        color: steelblue;
+        margin-bottom: 15px;
+      }
+
+      .mega-submenu-2 li a {
+        display: inline-block;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        text-decoration: none;
+        color: rgb(102, 99, 99);
+        transition: padding 0.5s, color 0.5s;
+      }
+
+      .mega-submenu-2 li a:hover {
+        color: rgb(190, 118, 50);
+        padding-left: 50px;
+      }
+
+      .carousel-intro {
+        width: 80%;
+        margin: 2rem auto;
+      }
+
+      @keyframes tonext {
+        75% {
+          left: 0;
+        }
+        95% {
+          left: 100%;
+        }
+        98% {
+          left: 100%;
+        }
+        99% {
+          left: 0;
+        }
+      }
+
+      @keyframes tostart {
+        75% {
+          left: 0;
+        }
+        95% {
+          left: -300%;
+        }
+        98% {
+          left: -300%;
+        }
+        99% {
+          left: 0;
+        }
+      }
+
+      @keyframes snap {
+        96% {
+          scroll-snap-align: center;
+        }
+        97% {
+          scroll-snap-align: none;
+        }
+        99% {
+          scroll-snap-align: none;
+        }
+        100% {
+          scroll-snap-align: center;
+        }
+      }
+
+      /* body {
+        max-width: 37.5rem;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+        font-family: 'Lato', sans-serif;
+      } */
+
+      * {
+        box-sizing: border-box;
+        scrollbar-color: transparent transparent; /* thumb and track color */
+        scrollbar-width: 0px;
+      }
+
+      *::-webkit-scrollbar {
+        width: 0;
+      }
+
+      *::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      *::-webkit-scrollbar-thumb {
+        background: transparent;
+        border: none;
+      }
+
+      * {
+        -ms-overflow-style: none;
+      }
+
+      ol, li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .carousel {
+        position: relative;
+        width: 80%;
+        height: 80vh;
+        margin: 2rem auto;
+        filter: drop-shadow(0 0 10px #0003);
+        perspective: 100px;
+        padding-top: 0;
+      }
+
+      .carousel__viewport {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        overflow-x: scroll;
+        counter-reset: item;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        height: 100%;
+      }
+
+      .carousel__slide {
+        position: relative;
+        flex: 0 0 100%;
+        width: 100%;
+        background-color: rgb(189, 177, 177);
+        counter-increment: item;
+        height: 100%;
+      }
+
+      .carousel__slide img,
+      .carousel__slide .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .carousel__slide:nth-child(even) {
+        background-color: rgb(189, 177, 177);
+      }
+
+      .carousel__slide:before {
+        content: counter(item);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%,-40%,70px);
+        color: #fff;
+        font-size: 2em;
+      }
+
+      .carousel__snapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        scroll-snap-align: center;
+      }
+
+      @media (hover: hover) {
+        .carousel__snapper {
+          animation-name: tonext, snap;
+          animation-timing-function: ease;
+          animation-duration: 4s;
+          animation-iteration-count: infinite;
+        }
+
+        .carousel__slide:last-child .carousel__snapper {
+          animation-name: tostart, snap;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .carousel__snapper {
+          animation-name: none;
+        }
+      }
+
+      .carousel:hover .carousel__snapper,
+      .carousel:focus-within .carousel__snapper {
+        animation-name: none;
+      }
+
+      .carousel__navigation {
+        position: absolute;
+        right: 0;
+        bottom: -1.6rem;
+        left: 0;
+        text-align: center;
+      }
+
+      .carousel__navigation-list,
+      .carousel__navigation-item {
+        display: inline-block;
+      }
+
+      .carousel__navigation-button {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: #333;
+        background-clip: content-box;
+        border: 0.25rem solid transparent;
+        border-radius: 50%;
+        font-size: 0;
+        transition: transform 0.1s;
+      }
+
+      .carousel::before,
+      .carousel::after,
+      .carousel__prev,
+      .carousel__next {
+        position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          font-size: 0;
+          outline: 0;
+          /* background-color: rgba(0, 0, 0, 0.55); */
+          z-index: 2;
+      }
+
+      .carousel::before,
+      .carousel__prev {
+        left: -1rem;
+      }
+
+      .carousel::after,
+      .carousel__next {
+        right: -1rem;
+      }
+
+      .carousel::before,
+      .carousel::after {
+        content: '';
+        z-index: 1;
+        background-color: #333;
+        background-size: 1.5rem 1.5rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        color: #fff;
+        font-size: 2.5rem;
+        line-height: 4rem;
+        text-align: center;
+        pointer-events: none;
+      }
+
+      .carousel::before {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+      }
+
+      .carousel::after {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+      }
+
+      .carousel__slide .figure-caption {
+        position: absolute;
+        top: 0.8rem;
+        left: 0.8rem;
+        background: rgba(0,0,0,0.6);
+        color: #fff;
+        padding: 0.25rem 0.55rem;
+        border-radius: 5px;
+        font-size: 0.85rem;
+        z-index: 5;
+      }
+
+      .footer-container {
+        background-color: rgb(43, 41, 41);
+        color: white;
+        width: 100%;
+        height: 7rem;
+        text-align: center;
+        font-size: 16px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header class="header" id="info">
+      <div class="container">
+        <div class="first-section" id="info">
+          <img src="../img/website-logo.png">
+        </div>
+
+        <div class="second-section" id="info">
+          <div class="weather-symbol-wrapper">
+            <img src="../img/sun-logo.png" class="weather-symbol">
+          </div>
+          <div class="weather-info">
+            <p class="location-date-wrapper">
+              <span class="weather-location">Amman</span>
+              <span style="padding: 0 10px; color: rgb(247, 242, 242);">/</span>
+              <span class="weather-date">Tue..24</span>
+            </p>
+            <div>
+              <p class="temperature-data">
+                <span><img src="../img/day.png" width="25">13℃</span>
+                <span style="padding: 0 5px; color: rgb(247, 242, 242);">/</span>
+                <span><img src="../img/night.png" width="25">6℃</span>
+              </p> 
+            </div>
+          </div>
+        </div>
+
+        <div class="third-section" id="info">
+          <span class="contact-us-title">CONTACT US ▶</span>
+          <span class="phone-number">+962795309880</span>
+          <span class="contact-email">2002073069@lasallejordan.net</span>
+        </div>
+
+        <div class="fourth-section" id="info">
+          <p class="language-button">Language ↓</p>
+          <p class="english-language">English</p>
+          <p class="arabic-language">العربية</p>
+        </div>
+      </div>
+    </header>
+
+    <header class="header" id="nav">
+      <nav>
+        <ul class="main-menu">
+          <li class="first-section" id="nav"><a href="../Tourism in Jordan Articles.html"><img src="../img/home.png" class="home-icon"></a></li>
+
+          <li class="second-section" id="nav">
+            <a class="nav-titles">All About Jordan<i class="fa-solid fa-chevron-down"></i></a>
+            <div class="mega-dropdown-1">
+              <ul class="mega-submenu-1">
+                <h5>Useful Information</h5>
+                <li><a href="Jordan Identity Card.html">Jordan Identity Card</a></li>
+                <li><a href="Useful Phrases.html">Useful Phrases</a></li>
+                <li><a href="Bedouin Culture.html">Bedouin Culture</a></li>
+              </ul>
+              <ul class="mega-submenu-1">
+                <h5>Galary</h5>
+                <li><a href="Gallery.html" style="color: rgb(190, 118, 50);"><strong>Photos/Videos</strong></a></li>
+              </ul>
+              <ul class="mega-submenu-1">
+                <h5>Popular Figures</h5>
+                <li><a href="King Hussein Bin Talal.html">King Hussein bin Talal</a></li>
+                <!-- <li><a href="#">King Abdullah I</a></li> -->
+                <li><a href="Wasfi Al-Tal.html">Wasfi Al-Tal</a></li>
+                <!-- <li><a href="#">Haider Mahmoud</a></li> -->
+                <li><a href="Habis Al-Majali.html">Habis Al-Majali</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="third-section" id="nav">
+            <a class="nav-titles">Tourist Sites<i class="fa-solid fa-chevron-down"></i></a>
+            <div class="mega-dropdown-2" id=>
+              <ul class="mega-submenu-2" id=>
+                <h5>Historical Sites</h5>
+                <li><a href="../article/Petra Article.html"  style="color: rgb(190, 118, 50);"><strong>Petra</strong></a></li>
+                <!-- <li><a href="#">Jerash</a></li>
+                <li><a href="#">Amman Citadel</a></li> -->
+                <li><a href="../article/Tabaqat Fahl Article.html">Tabaqat Fahl</a></li>
+                <li><a href="../article/Ajloun Castle Article.html">Ajloun Castle</a></li>
+                <li><a href="../article/Iraq Al-Amir Article.html">Iraq al-Amir</a></li>
+                <li><a href="../article/Umm el-Jimal Article.html">Umm el-Jimal</a></li>
+              </ul>
+              <ul class="mega-submenu-2">
+                <h5>Cultural Sites</h5>
+                <li><a href="../article/Wadi Rum Article.html">Wadi Rum</a></li>
+                <li><a href="../article/Aqaba Article.html">Aqaba</a></li>
+                <li><a href="../article/Umm Qais Article.html">Umm Qais</a></li>
+                <li><a href="../article/Dana Biosphere Reserve Article.html">Dana Biosphere Reserve</a></li>
+                <!-- <li><a href="#">Umm ar-Rasas</a></li> -->
+                <li><a href="../article/Madaba Article.html">Madaba City</a></li>
+                <!-- <li><a href="#">The Amman Roman Theater</a></li> -->
+              </ul>
+              <ul class="mega-submenu-2">
+                <h5>Religious Sites</h5>
+                <li><a href="../article/Lot's Cave Article.html">Lot's Cave</a></li>
+                <li><a href="../article/Mount Nebo Article.html">Mount Nebo</a></li>
+                <li><a href="../article/Mukawir Article.html">Mukawir</a></li>
+                <li><a href="../article/Baptism Site of Jesus Christ Article.html">Baptism Site of Jesus Christ</a></li>
+                <li><a href="../article/King Hussein Bin Talal Mosque Article.html">King Hussein Bin Talal Mosque</a></li>
+                <!-- <li><a href="#">Cave of The Seven Sleepers</a></li> -->
+                <!-- <li><a href="#">St George's Church</a></li> -->
+              </ul>
+              <ul class="mega-submenu-2">
+                <h5>Medical Sites</h5>
+                <li><a href="../article/Dead Sea Article.html">Dead Sea</a></li>
+                <li><a href="../article/Ma'in Hot Springs Article.html">Ma'in Hot Springs</a></li>
+                <!-- <li><a href="#" style="padding-bottom: 5px;">Afra Hot Springs</a></li> -->
+                <h5>Museums</h5>
+                <li><a href="../article/The Jordan Museum Article.html">The Jordan Museum</a></li>
+                <li><a href="../article/The Royal Automobile Museum.html">The Royal Automobile Museum</a></li>
+                <!-- <li><a href="#">The Petra Museum</a></li> -->
+              </ul>
+            </div>
+          </li>
+          <li class="fourth-section" id="nav"><a href="What To Do.html" class="nav-titles">What To Do</a></li>
+          <li class="fifth-section" id="nav"><a href="Plan Your Trip.html" class="nav-titles">Plan Your Trip</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <header class="header" id="small">
+    <div class="upper-menu">
+      <div class="left-side">
+        <input type="checkbox" id="menu">
+        <label for="menu" class="collapsible-menu-label"><span>Menu</span></label>
+      </div>
+      <div class="logo-container"><a href="../Tourism in Jordan Articles.html"><img src="../img/website-logo.png" class="header-small-logo"></a></div>
+    </div>
+
+    <div class="collapsible-menu">
+      <div class="menu-content">
+        <ul>
+          <li><a href="../Tourism in Jordan Articles.html">Home</a></li>
+          <li><a href="../ ">All About Jordan</a></li> 
+          <div class="wrapper-small">
+            <ul>
+              <li>
+                <input type="checkbox" id="list-item-1">
+                <label for="list-item-1" class="first">Tourist Sites</label>
+                <ul>
+                  <li>
+                    <input type="checkbox" id="list-item-1-1">
+                    <label for="list-item-1-1">Historical Sites</label>
+                    <ul>
+                      <li><a href="../article/Petra Article.html">Petra</a></li>
+                      <li><a href="../article/Tabaqat Fahl Article.html">Tabaqat Fahl</a></li>
+                      <li><a href="../article/Ajloun Castle Article.html">Ajloun Castle</a></li>
+                      <li><a href="../article/Iraq Al-Amir Article.html">Iraq al-Amir</a></li>
+                      <li><a href="../article/Umm el-Jimal Article.html">Umm el-Jimal</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" id="list-item-1-2">
+                    <label for="list-item-1-2">Cultural Sites</label>
+                    <ul>
+                      <li><a href="../article/Wadi Rum Article.html">Wadi Rum</a></li>
+                      <li><a href="../article/Aqaba Article.html">Aqaba</a></li>
+                      <li><a href="../article/Umm Qais Article.html">Umm Qais</a></li>
+                      <li><a href="../article/Dana Biosphere Reserve Article.html">Dana Biosphere Reserve</a></li>
+                      <li><a href="../article/Madaba Article.html">Madaba City</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" id="list-item-1-3">
+                    <label for="list-item-1-3">Religious Sites</label>
+                    <ul>
+                      <li><a href="../article/Lot's Cave Article.html">Lot's Cave</a></li>
+                      <li><a href="../article/Mount Nebo Article.html">Mount Nebo</a></li>
+                      <li><a href="../article/Mukawir Article.html">Mukawir</a></li>
+                      <li><a href="../article/Baptism Site of Jesus Christ Article.html">Baptism Site of Jesus Christ</a></li>
+                      <li><a href="../article/King Hussein Bin Talal Mosque Article.html">King Hussein Bin Talal Mosque</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" id="list-item-1-4">
+                    <label for="list-item-1-4">Medical Sites</label>
+                    <ul>
+                      <li><a href="../article/Dead Sea Article.html">Dead Sea</a></li>
+                      <li><a href="../article/Ma'in Hot Springs Article.html">Ma'in Hot Springs</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" id="list-item-1-5">
+                    <label for="list-item-1-5">Museums</label>
+                    <ul>
+                      <li><a href="../article/The Jordan Museum Article.html">The Jordan Museum</a></li>
+                      <li><a href="../article/The Royal Automobile Museum.html">The Royal Automobile Museum</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <li><a href="What To Do.html">What To Do</a></li>
+          <li><a href="">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    </header> 
+
+    <div class="carousel-intro">
+      <h1>The Hashemite Kingdom of Jordan</h1>
+      <p>
+        Images of the Various Tourist Sites in Jordan:
+      </p>
+    </div>
+
+    <section class="carousel" aria-label="Gallery">
+      <ol class="carousel__viewport">
+        <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 1: Ajloun</div>
+            <img class="carousel-image" src="../img/Ajloun Images/Ajloun main.PNG" alt="Ajloun site image 1">
+            <a href="#carousel__slide23" class="carousel__prev">‹</a>
+            <a href="#carousel__slide2" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 2: Aqaba</div>
+            <img class="carousel-image" src="../img/Aqaba Images/Aqaba-Main.jfif" alt="Aqaba site image 2">
+            <a href="#carousel__slide1" class="carousel__prev">‹</a>
+            <a href="#carousel__slide3" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 3: Baptism Site of Jesus Christ</div>
+            <img class="carousel-image" src="../img/Baptism Site of Jesus Christ/Main.PNG" alt="Baptism site image 3">
+            <a href="#carousel__slide2" class="carousel__prev">‹</a>
+            <a href="#carousel__slide4" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide4" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 4: Bedouins</div>
+            <img class="carousel-image" src="../img/Bedioun Culture/Bedouin Tent.PNG" alt="Bedouins site image 4">
+            <a href="#carousel__slide3" class="carousel__prev">‹</a>
+            <a href="#carousel__slide5" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide5" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 5: Dana Biosphere Reserve</div>
+            <img class="carousel-image" src="../img/Dana Biosphere Reserve/Dana-1.png" alt="Dana Biosphere Reserve image 5">
+            <a href="#carousel__slide4" class="carousel__prev">‹</a>
+            <a href="#carousel__slide6" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide6" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 6: Dead Sea</div>
+            <img class="carousel-image" src="../img/Dead Sea/Dead Sea Main.PNG" alt="Dead Sea image 6">
+            <a href="#carousel__slide5" class="carousel__prev">‹</a>
+            <a href="#carousel__slide7" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide7" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 7: Habis Al Majali</div>
+            <img class="carousel-image" src="../img/Habis al-Majali/Habis Al-Majali 1.PNG" alt="Habis Al Majali image 7">
+            <a href="#carousel__slide6" class="carousel__prev">‹</a>
+            <a href="#carousel__slide8" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide8" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 8: Iraq Al-Amir</div>
+            <img class="carousel-image" src="../img/Iraq Al-Amir/Iraq Al-Amir Mian.webp" alt="Iraq al-Amir image 8">
+            <a href="#carousel__slide7" class="carousel__prev">‹</a>
+            <a href="#carousel__slide9" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide9" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 9: King Hussein Bin Talal Mosque</div>
+            <img class="carousel-image" src="../img/King Hussein Bin Talal Mosque/Close up.jfif" alt="King Hussein Bin Talal Mosque image 9">
+            <a href="#carousel__slide8" class="carousel__prev">‹</a>
+            <a href="#carousel__slide10" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide10" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 10: King Hussein Bin Talal</div>
+            <img class="carousel-image" src="../img/King Hussein Bin Talal/King Hussein 1.PNG" alt="King Hussein Bin Talal image 10">
+            <a href="#carousel__slide9" class="carousel__prev">‹</a>
+            <a href="#carousel__slide11" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide11" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 11: Lot's Cave</div>
+            <img class="carousel-image" src="../img/Lot's Cave/Lot-Main.jfif" alt="Lot's Cave image 11">
+            <a href="#carousel__slide10" class="carousel__prev">‹</a>
+            <a href="#carousel__slide12" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide12" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 12: Ma'in Hot Springs</div>
+            <img class="carousel-image" src="../img/Ma'in Hot Springs/Ma'in primary.PNG" alt="Ma'in Hot Springs image 12">
+            <a href="#carousel__slide11" class="carousel__prev">‹</a>
+            <a href="#carousel__slide13" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide13" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 13: Madaba</div>
+            <img class="carousel-image" src="../img/Madaba Images/Madaba Main.PNG" alt="Madaba image 13">
+            <a href="#carousel__slide12" class="carousel__prev">‹</a>
+            <a href="#carousel__slide14" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide14" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 14: Mount Nebo</div>
+            <img class="carousel-image" src="../img/Mount Nebo/Church.PNG" alt="Mount Nebo image 14">
+            <a href="#carousel__slide13" class="carousel__prev">‹</a>
+            <a href="#carousel__slide15" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide15" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 15: Mukawir</div>
+            <img class="carousel-image" src="../img/Mukawir/Mukawir Fortress.jfif" alt="Mukawir image 15">
+            <a href="#carousel__slide14" class="carousel__prev">‹</a>
+            <a href="#carousel__slide16" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide16" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 16: Petra</div>
+            <img class="carousel-image" src="../img/Petra Images/Petra Top View.jpg" alt="Petra image 16">
+            <a href="#carousel__slide15" class="carousel__prev">‹</a>
+            <a href="#carousel__slide17" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide17" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 17: Tabaqat Fahl</div>
+            <img class="carousel-image" src="../img/Tabaqat Fahl Images/Tabaqat Fahl Main.jfif" alt="Tabaqat Fahl image 17">
+            <a href="#carousel__slide16" class="carousel__prev">‹</a>
+            <a href="#carousel__slide18" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide18" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 18: The Jordan Museum</div>
+            <img class="carousel-image" src="../img/The Jordan Museum/Main.jpg" alt="The Jordan Museum image 18">
+            <a href="#carousel__slide17" class="carousel__prev">‹</a>
+            <a href="#carousel__slide19" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide19" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 19: The Royal Automobile Museum</div>
+            <img class="carousel-image" src="../img/The Royal Automobile Museum/Main.PNG" alt="The Royal Automobile Museum image 19">
+            <a href="#carousel__slide18" class="carousel__prev">‹</a>
+            <a href="#carousel__slide20" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide20" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 20: Umm el-Jimal</div>
+            <img class="carousel-image" src="../img/Umm el-Jimal/Umm el-Jimal Main.png" alt="Umm el-Jimal image 20">
+            <a href="#carousel__slide19" class="carousel__prev">‹</a>
+            <a href="#carousel__slide21" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide21" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 21: Umm Qais</div>
+            <img class="carousel-image" src="../img/Umm Qais Images/Umm-Qais-Main.jfif" alt="Umm Qais image 21">
+            <a href="#carousel__slide20" class="carousel__prev">‹</a>
+            <a href="#carousel__slide22" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide22" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 22: Wadi Rum</div>
+            <img class="carousel-image" src="../img/Wadi Rum/Wadi Rum 1.PNG" alt="Wadi Rum image 22">
+            <a href="#carousel__slide21" class="carousel__prev">‹</a>
+            <a href="#carousel__slide23" class="carousel__next">›</a>
+          </div>
+        </li>
+        <li id="carousel__slide23" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <div class="figure-caption">Figure 23: Wasfi Al-Tal</div>
+            <img class="carousel-image" src="../img/Wasfi Al-Tal/Wasfi Al-Tal 1.PNG" alt="Wasfi Al-Tal image 23">
+            <a href="#carousel__slide22" class="carousel__prev">‹</a>
+            <a href="#carousel__slide1" class="carousel__next">›</a>
+          </div>
+        </li>
+      </ol>
+
+      <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+          <li class="carousel__navigation-item"><a href="#carousel__slide1" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide2" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide3" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide4" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide5" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide6" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide7" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide8" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide9" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide10" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide11" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide12" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide13" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide14" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide15" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide16" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide17" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide18" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide19" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide20" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide21" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide22" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide23" class="carousel__navigation-button"></a></li>
+        </ol>
+      </aside>
+    </section>
+
+    <!-- <div class="carousel-intro">
+      <h1>Aqaba</h1>
+      <p>
+        Images of the Coastal Gem of the Kingdom:
+      </p>
+    </div>
+
+    <section class="carousel" aria-label="Gallery">
+      <ol class="carousel__viewport">
+        <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <img class="carousel-image" src="../img/Aqaba Images/Aqaba-Castle.jpg" alt="site image 1">
+            <a href="#carousel__slide3" class="carousel__prev"></a>
+            <a href="#carousel__slide2" class="carousel__next"></a>
+          </div>
+        </li>
+        <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <img class="carousel-image" src="../img/Aqaba Images/Aqaba-Church.png" alt="site image 2">
+            <a href="#carousel__slide1" class="carousel__prev"></a>
+            <a href="#carousel__slide3" class="carousel__next"></a>
+          </div>
+        </li>
+        <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <img class="carousel-image" src="../img/Aqaba Images/Aqaba-Mosque.png" alt="site image 3">
+            <a href="#carousel__slide2" class="carousel__prev"></a>
+            <a href="#carousel__slide1" class="carousel__next"></a>
+          </div>
+        </li>
+      </ol>
+
+      <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+          <li class="carousel__navigation-item"><a href="#carousel__slide1" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide2" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide3" class="carousel__navigation-button"></a></li>
+        </ol>
+      </aside>
+    </section>
+
+    <div class="carousel-intro">
+      <h1>PETRA</h1>
+      <p>
+        Images of the Rose Red City:
+      </p>
+    </div>
+
+    <section class="carousel" aria-label="Gallery">
+      <ol class="carousel__viewport">
+        <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <img class="carousel-image" src="../img/Petra Images/Petra Top View.jpg" alt="site image 1">
+            <a href="#carousel__slide3" class="carousel__prev"></a>
+            <a href="#carousel__slide2" class="carousel__next"></a>
+          </div>
+        </li>
+        <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <img class="carousel-image" src="../img/Petra Images/Petra Neolithic.jpg" alt="site image 2">
+            <a href="#carousel__slide1" class="carousel__prev"></a>
+            <a href="#carousel__slide3" class="carousel__next"></a>
+          </div>
+        </li>
+        <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <img class="carousel-image" src="../img/Petra Images/Petra Main 1.jpg" alt="site image 3">
+            <a href="#carousel__slide2" class="carousel__prev"></a>
+            <a href="#carousel__slide1" class="carousel__next"></a>
+          </div>
+        </li>
+      </ol>
+
+      <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+          <li class="carousel__navigation-item"><a href="#carousel__slide1" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide2" class="carousel__navigation-button"></a></li>
+          <li class="carousel__navigation-item"><a href="#carousel__slide3" class="carousel__navigation-button"></a></li>
+        </ol>
+      </aside>
+    </section> -->
+
+    <footer>
+      <div class="footer-container">
+        <h3>&copy; All Rights Reserved</h3>
+        <h3>Designed and Developed By Fadi Al Samarneh</h3>
+      </div>
+    </footer>
+  </body>
+</html>

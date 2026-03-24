@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>What is Ajloun Castle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/TIJ.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="../img/Favicon-1.png">
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: roboto, arial;
+        margin: 0;
+        font-size: 10pt;
+        background-color: rgb(223, 219, 219);
+        overflow-x: hidden;
+      }
+
+      @media only screen and (min-width: 481px) and (max-width: 768px){
+        /* vertical tablets and horizontal mobiles */
+        .header#info {
+          background-color: orangered !important;
+        }
+      }
+
+      @media only screen and (min-width: 769px) and (max-width: 1279px){
+        /* horizontal tablets and small screens */
+        .header#info {
+          background-color: orange !important;
+        }
+      }
+
+      @media only screen and (min-width: 481px) {
+        /* laptops and more */
+        .header#small {
+          display: none;
+        }
+      }
+
+      @media only screen and (max-width: 480px){
+        /* extra small screens i.e. mobile */
+        body{
+          background-color: rgb(247, 242, 242);
+        }
+        .header#info{
+          display: none !important;
+        }
+
+        .header#nav{
+          display: none !important;
+        }
+
+        .header#small{
+          display: flex;
+          flex-direction: column;
+
+          height: 70px;
+          background-color: rgb(43, 41, 41);
+        }
+        .header#small .upper-menu{
+          display: flex;
+          flex-direction: row;
+        }
+
+        .menu-content {
+          font-family: Roboto, arial; 
+          padding: 0 0 0 30px;
+          max-height: 0;
+          overflow: hidden;
+        }
+        .collapsible-menu {
+          /* background-color: grey; */
+          padding: 0px 30px;
+          height: 100vh;
+        }
+        .collapsible-menu ul {
+          list-style-type: none;
+          padding: 0;
+        }
+        .collapsible-menu a {
+          display:block;
+          padding: 0.6em;
+          font-size: 1.94em;
+          text-decoration: none;
+        }
+
+        .collapsible-menu ul li a {
+          color: white;
+        }
+
+        label.collapsible-menu-label  {
+          font-family: roboto, arial;
+          font-size: 36px;
+          color: white;
+          display: block;
+          cursor: pointer;
+          background: url(../img/white_Hamburger-Menu.png) no-repeat left center;
+          background-size: 30%;
+          padding: 10px 0 10px 36px;
+        }
+
+        input#menu {
+          display: none;
+        }
+
+        input:checked +label {
+          background-image: url(../img/white_close.png);
+        }
+
+        input:checked ~ label {
+          background-image: url(../img/white_close.png);
+          width: 52px;
+        }
+        input:checked ~ .menu-content {
+          height: 100vh;
+          max-height: 100vh;
+          width: 60vw;
+        }
+
+        .header#small:has(input:checked){height: 100vh !important}
+        .header-small-logo{height: 59px;padding-top: 6px;padding-right: 16px;}
+        .header .collapsible-menu label span{font-size: 1.8rem}
+        .header#small:has(input:checked) .menu-content{overflow: visible !important}
+        .header#small .left-side{
+          padding-left: 1.8em;
+          min-width: calc(100vw / 3);
+          width: calc(100vw / 3);
+          /* background: red; */
+          padding-left: 36px;
+          box-sizing: border-box;
+        }
+        .header#small .logo-container{
+          min-width: calc(calc(100vw / 3) *2);
+          /* background: yellow; */
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-end;
+          padding-right: 16px;
+          box-sizing: border-box;
+        }
+
+        .wrapper-small{
+          margin: auto;
+          width: 400px;
+        }
+
+        .wrapper-small ul{
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .wrapper-small label{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          padding: 10px;
+          color: white;
+          font-family: roboto, arial;
+          font-size: 1.94em;
+        /*   border: 1px solid #fff; */
+        }
+
+        /* .wrapper-small label:hover{
+          background: #26C281;
+        } */
+
+        .wrapper-small label.last{
+          border-bottom: 1px solid #fff;
+        }
+
+        .wrapper-small ul ul {
+          margin-left: 15px;
+        }
+
+        .wrapper-small ul ul li{
+          margin-left: 0;
+          padding: 6px 0;
+          font-size: 0.7rem;
+        }
+
+        .wrapper-small ul ul li a {
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+          display: block;
+          padding: 6px 0;
+        }
+
+        .wrapper-small ul ul li a:hover {
+          padding-left: 10px;
+          color: #f0f0f0;
+        }
+
+        .wrapper-small input[type="checkbox"] {
+          position: absolute;
+          left: -9999px;
+        }
+
+        .wrapper-small input[type="checkbox"] ~ ul {
+          max-height: 0;
+          overflow: hidden;
+          transform: scaleY(0);
+          transform-origin: top;
+        }
+
+        .wrapper-small input[type="checkbox"]:checked ~ ul {
+          max-height: 100vh;
+          transform: scaleY(1);
+          transition: transform 0.2s ease-out;
+        }
+
+        
+
+        .wrapper-small input[type="checkbox"]:checked + label{
+          background: rgb(43, 41, 41);
+          width: 100vw;
+          /* border-bottom: 1px solid #fff; */
+        }
+      }
+
+      .header#info {
+        --main-bg-color: black;
+        background-color: rgb(43, 41, 41);
+        
+        height: 100px;
+        /* min-width: 1366px; */
+
+        display: flex;
+        flex-direction: row;
+        justify-content:center; 
+      }
+
+      .container{
+        width: calc(100vw - 10vw);
+        display: flex;
+        flex-direction: row;
+      }  
+
+      .first-section#info {
+        display: flex;
+        /* min-width: 313px; */
+        width: calc(calc(100vw - 10vw) / 3) ;
+        position: relative;
+      }
+
+      .first-section#info::before {
+        content: '';
+        position: absolute;
+        /* background-color: rgb(136, 19, 19); */
+        width: 2px;
+        height: 65%;
+        bottom: 14pt;
+        right:55px;
+      }
+
+      .second-section#info {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        /* min-width: 413px; */
+        width: calc(calc(100vw - 10vw) / 3) ;
+        justify-content: center;
+        align-items: center;
+        /* margin-left: 10px; */
+        margin: 0 10px;
+        position: relative;
+      }
+
+      .second-section#info::before {
+        content: '';
+        position: absolute;
+        /* background-color: rgb(136, 19, 19); */
+        width: 2px;
+        height: 60%;
+        bottom: 14pt;
+        right: 0px;
+      }
+
+      .weather-symbol-wrapper{
+        display: flex;
+        flex-direction: row;
+        width: 30%;
+      }
+      
+      .weather-symbol {
+        display: flex;
+        flex-direction: row;
+        /* height: 80px;
+        width: 80px; */
+        max-width: 70%;
+        object-fit: contain;
+        justify-content: center;
+      }
+
+      .weather-info {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+      }
+
+      .weather-location {
+        color: rgb(247, 242, 242);
+      }
+
+      .weather-date {
+        color: rgb(194, 183, 183);
+        font-weight: 600;
+      }
+
+      .temperature-data {
+        font-size: 30px;
+        height: 30px;
+        margin: 0;
+        color: rgb(247, 242, 242);
+      }
+
+      .third-section#info {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        /* min-width: 388px; */
+        width: calc(calc(calc(100vw - 10vw) / 3) / 2);
+        justify-content: center;
+        /* margin-left: 10px; */
+        margin: 12px 10px;
+        position: relative;
+      }
+
+      .third-section#info::before {
+        content: '';
+        position: absolute;
+        /* background-color: rgb(136, 19, 19); */
+        width: 2px;
+        height: 60%;
+        bottom: 14pt;
+        right: -35px;
+      }
+
+      .contact-us-title {
+        position: absolute;
+        top: 12px;
+        color: white;
+      }
+
+      .phone-number {
+        position: absolute;
+        top: 30px;
+        color: white;
+      }
+
+      .contact-email {
+        position: absolute;
+        top: 48px;
+        color: white;
+      }
+
+      .fourth-section#info {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        /* min-width: 248px; */
+        width: calc(calc(calc(100vw - 10vw) / 3) / 2);
+        justify-content: center;
+        margin-left: 10px;
+      }
+
+      .language-button {
+        position: absolute;
+        top: 12px;
+        color: white;
+      }
+
+      .english-language {
+        position: absolute;
+        top: 30px;
+        color: white;
+      }
+
+      .arabic-language {
+        position: absolute;
+        top: 48px;
+        color: white;
+      }
+
+      nav {
+        width: calc(100vw - 10vw);
+      }
+      
+      .first-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .home-icon {
+        height: 4.5em;
+      }
+
+      .second-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .third-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .fourth-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .fifth-section#nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-titles {
+        font-family: roboto, arial;
+        font-size: 1.3em;
+        color: rgb(95, 91, 91);
+        text-decoration: none;
+        margin: 25px 20px;
+      }
+
+      .header#nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* width: 100%;
+        min-width: 1150px; */
+        height: 70px;
+        background-color: white;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;
+      }
+
+      .main-menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: auto;
+        height: 100%;
+        margin-top: 0px;
+        margin-bottom: 0px; 
+      }
+
+      .header#nav nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 80%;
+        min-width: 1000px;
+        height: 100%;
+        position: relative;
+        width: calc(100vw - 10vw);
+      }
+
+      li {
+        list-style: none;
+      }
+
+      .main-menu > li {
+        height: 100%;
+        transition: background-color 0.5s;
+      }
+
+      .main-menu > li:hover:not(:first-child) {
+        background-color: rgb(168, 192, 211);
+      }
+
+      .main-menu > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 0 30px;
+      }
+
+      .main-menu > li > a > i {
+        font-size: 0.8rem;
+        margin-left: 10px;
+      }
+
+      .mega-dropdown-1 {
+        display: flex;
+        height: 300px;
+        width: 100%;           
+        max-width: 1200px;     
+        background-color: whitesmoke;
+        position: absolute;
+        left: 0;               
+        top: 100%;             
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 4px 3px rgba(0,0,0,0.2);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s, top 0.5s;
+        pointer-events: auto;
+        z-index: 998;
+      }
+
+      .main-menu > li:hover .mega-dropdown-1, 
+      .mega-dropdown-1:hover {
+        top: 100%;
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .mega-submenu-1 {
+        width: 25%;
+        height: 80%;
+        margin: 20px;
+      }
+
+      .mega-submenu-1:not(:first-child) {
+        border-left: 1px solid rgba(129,174,211,0.5);
+      }
+
+      .mega-submenu-1 h5 {
+        display: block;
+        font-size: 0.9rem;
+        color: steelblue;
+        margin-bottom: 15px;
+      }
+
+      .mega-submenu-1 li a {
+        display: inline-block;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        text-decoration: none;
+        color: rgb(102, 99, 99);
+        transition: padding 0.5s, color 0.5s;
+      }
+
+      .mega-submenu-1 li a:hover {
+        color: rgb(190, 118, 50);
+        padding-left: 50px;
+      }
+
+      .mega-dropdown-2 {
+        display: flex;
+        height: 300px;
+        width: 100%;           
+        max-width: 1200px;     
+        background-color: whitesmoke;
+        position: absolute;
+        left: 0;               
+        top: 100%;             
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 4px 3px rgba(0,0,0,0.2);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s, top 0.5s;
+        pointer-events: auto;
+        z-index: 998;
+      }
+
+      .main-menu > li:hover .mega-dropdown-2, 
+      .mega-dropdown-2:hover {
+        top: 100%;
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .mega-submenu-2 {
+        width: 25%;
+        height: 80%;
+        margin: 20px;
+      }
+
+      .mega-submenu-2:not(:first-child) {
+        border-left: 1px solid rgba(129,174,211,0.5);
+      }
+
+      .mega-submenu-2 h5 {
+        display: block;
+        font-size: 0.9rem;
+        color: steelblue;
+        margin-bottom: 15px;
+      }
+
+      .mega-submenu-2 li a {
+        display: inline-block;
+        padding-bottom: 10px;
+        padding-left: 5px;
+        text-decoration: none;
+        color: rgb(102, 99, 99);
+        transition: padding 0.5s, color 0.5s;
+      }
+
+      .mega-submenu-2 li a:hover {
+        color: rgb(190, 118, 50);
+        padding-left: 50px;
+      }
+      
+
+      .article-section .article-data p:not(p.caption){
+        font-size: 1.25rem;
+      }
+
+      .article-container{
+        width: calc(100vw - 20vw);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10vw;
+      }
+
+      .article-container .img-container {
+        width: 60vw;
+        height: 45vw;
+        border: 16px solid white;
+        border-radius: 7px;
+        display: block;
+        margin: 2.1rem auto;
+      }
+
+      .img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .img-container .caption{
+        text-align: center;
+        font-size: 0.9rem !important;
+      }
+
+      .article-header{
+        position: relative;
+        box-sizing: border-box;
+        padding: 1.6rem;
+        width: 100%;
+        height: 43vh;
+        margin: 0;
+        margin-bottom: 1.6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: url('https://i0.wp.com/www.touristjordan.com/wp-content/uploads/2017/12/shutterstock_393099400-scaled.jpg?fit=4188%2C2787&ssl=1');
+        background-size: cover;
+      }
+      .article-header-overlay{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(160,160,160,0.34);
+        z-index: 0;
+      }
+      .article-header .content{
+        z-index: 10;
+      }
+
+      .article-header .content h1, 
+      .article-header .content h2{
+        text-shadow: 2px 2px 5px white;
+      }
+
+      .footer-container {
+        background-color: rgb(43, 41, 41);
+        color: white;
+        width: 100%;
+        height: 7rem;
+        text-align: center;
+        font-size: 16px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="info">
+      <div class="container">
+        <div class="first-section" id="info">
+          <img src="../img/website-logo.png">
+        </div>
+
+        <div class="second-section" id="info">
+          <div class="weather-symbol-wrapper">
+            <img src="../img/sun-logo.png" class="weather-symbol">
+          </div>
+          <div class="weather-info">
+            <p class="location-date-wrapper">
+              <span class="weather-location">Amman</span>
+              <span style="padding: 0 10px; color: rgb(247, 242, 242);">/</span>
+              <span class="weather-date">Tue..24</span>
+            </p>
+            <div>
+              <p class="temperature-data">
+                <span><img src="../img/day.png" width="25">13℃</span>
+                <span style="padding: 0 5px; color: rgb(247, 242, 242);">/</span>
+                <span><img src="../img/night.png" width="25">6℃</span>
+              </p> 
+            </div>
+          </div>
+        </div>
+
+        <div class="third-section" id="info">
+          <span class="contact-us-title">CONTACT US ▶</span>
+          <span class="phone-number">+962795309880</span>
+          <span class="contact-email">2002073069@lasallejordan.net</span>
+        </div>
+
+        <div class="fourth-section" id="info">
+          <p class="language-button">Language ↓</p>
+          <p class="english-language">English</p>
+          <p class="arabic-language">العربية</p>
+        </div>
+      </div>
+    </header>
+
+    <header class="header" id="nav">
+      <nav>
+        <ul class="main-menu">
+          <li class="first-section" id="nav"><a href="../Tourism in Jordan Articles.html"><img src="../img/home.png" class="home-icon"></a></li>
+
+          <li class="second-section" id="nav">
+            <a class="nav-titles">All About Jordan<i class="fa-solid fa-chevron-down"></i></a>
+            <div class="mega-dropdown-1">
+              <ul class="mega-submenu-1">
+                <h5>Useful Information</h5>
+                <li><a href="Jordan Identity Card.html">Jordan Identity Card</a></li>
+                <li><a href="Useful Phrases.html">Useful Phrases</a></li>
+                <li><a href="Bedouin Culture.html">Bedouin Culture</a></li>
+              </ul>
+              <ul class="mega-submenu-1">
+                <h5>Galary</h5>
+                <li><a href="Gallery.html">Photos/Videos</a></li>
+              </ul>
+              <ul class="mega-submenu-1">
+                <h5>Popular Figures</h5>
+                <li><a href="King Hussein Bin Talal.html">King Hussein bin Talal</a></li>
+                <!-- <li><a href="#">King Abdullah I</a></li> -->
+                <li><a href="Wasfi Al-Tal.html">Wasfi Al-Tal</a></li>
+                <!-- <li><a href="#">Haider Mahmoud</a></li> -->
+                <li><a href="Habis Al-Majali.html">Habis Al-Majali</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="third-section" id="nav">
+            <a class="nav-titles">Tourist Sites<i class="fa-solid fa-chevron-down"></i></a>
+            <div class="mega-dropdown-2" id=>
+              <ul class="mega-submenu-2" id=>
+                <h5>Historical Sites</h5>
+                <li><a href="../article/Petra Article.html">Petra</a></li>
+                <!-- <li><a href="#">Jerash</a></li>
+                <li><a href="#">Amman Citadel</a></li> -->
+                <li><a href="../article/Tabaqat Fahl Article.html">Tabaqat Fahl</a></li>
+                <li><a href="../article/Ajloun Castle Article.html">Ajloun Castle</a></li>
+                <li><a href="../article/Iraq Al-Amir Article.html">Iraq al-Amir</a></li>
+                <li><a href="../article/Umm el-Jimal Article.html">Umm el-Jimal</a></li>
+              </ul>
+              <ul class="mega-submenu-2">
+                <h5>Cultural Sites</h5>
+                <li><a href="../article/Wadi Rum Article.html"><strong>Wadi Rum</strong></a></li>
+                <li><a href="../article/Aqaba Article.html">Aqaba</a></li>
+                <li><a href="../article/Umm Qais Article.html" style="color: rgb(190, 118, 50);"><strong>Umm Qais</strong></a></li>
+                <li><a href="../article/Dana Biosphere Reserve Article.html">Dana Biosphere Reserve</a></li>
+                <!-- <li><a href="#">Umm ar-Rasas</a></li> -->
+                <li><a href="../article/Madaba Article.html">Madaba City</a></li>
+                <!-- <li><a href="#">The Amman Roman Theater</a></li> -->
+              </ul>
+              <ul class="mega-submenu-2">
+                <h5>Religious Sites</h5>
+                <li><a href="../article/Lot's Cave Article.html">Lot's Cave</a></li>
+                <li><a href="../article/Mount Nebo Article.html">Mount Nebo</a></li>
+                <li><a href="../article/Mukawir Article.html">Mukawir</a></li>
+                <li><a href="../article/Baptism Site of Jesus Christ Article.html">Baptism Site of Jesus Christ</a></li>
+                <li><a href="../article/King Hussein Bin Talal Mosque Article.html">King Hussein Bin Talal Mosque</a></li>
+                <!-- <li><a href="#">Cave of The Seven Sleepers</a></li> -->
+                <!-- <li><a href="#">St George's Church</a></li> -->
+              </ul>
+              <ul class="mega-submenu-2">
+                <h5>Medical Sites</h5>
+                <li><a href="../article/Dead Sea Article.html">Dead Sea</a></li>
+                <li><a href="../article/Ma'in Hot Springs Article.html">Ma'in Hot Springs</a></li>
+                <!-- <li><a href="#" style="padding-bottom: 5px;">Afra Hot Springs</a></li> -->
+                <h5>Museums</h5>
+                <li><a href="../article/The Jordan Museum Article.html">The Jordan Museum</a></li>
+                <li><a href="../article/The Royal Automobile Museum.html">The Royal Automobile Museum</a></li>
+                <!-- <li><a href="#">The Petra Museum</a></li> -->
+              </ul>
+            </div>
+          </li>
+          <li class="fourth-section" id="nav"><a href="What To Do.html" class="nav-titles">What To Do</a></li>
+          <li class="fifth-section" id="nav"><a href="Plan Your Trip.html" class="nav-titles">Plan Your Trip</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <header class="header" id="small">
+    <div class="upper-menu">
+      <div class="left-side">
+        <input type="checkbox" id="menu">
+        <label for="menu" class="collapsible-menu-label"><span>Menu</span></label>
+      </div>
+      <div class="logo-container"><a href="../Tourism in Jordan Articles.html"><img src="../img/website-logo.png" class="header-small-logo"></a></div>
+    </div>
+
+    <div class="collapsible-menu">
+      <div class="menu-content">
+        <ul>
+          <li><a href="../Tourism in Jordan Articles.html">Home</a></li>
+          <li><a href="../ ">All About Jordan</a></li> 
+          <div class="wrapper-small">
+            <ul>
+              <li>
+                <input type="checkbox" id="list-item-1">
+                <label for="list-item-1" class="first">Tourist Sites</label>
+                <ul>
+                  <li>
+                    <input type="checkbox" id="list-item-1-1">
+                    <label for="list-item-1-1">Historical Sites</label>
+                    <ul>
+                      <li><a href="../article/Petra Article.html">Petra</a></li>
+                      <li><a href="../article/Tabaqat Fahl Article.html">Tabaqat Fahl</a></li>
+                      <li><a href="../article/Ajloun Castle Article.html">Ajloun Castle</a></li>
+                      <li><a href="../article/Iraq Al-Amir Article.html">Iraq al-Amir</a></li>
+                      <li><a href="../article/Umm el-Jimal Article.html">Umm el-Jimal</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" id="list-item-1-2">
+                    <label for="list-item-1-2">Cultural Sites</label>
+                    <ul>
+                      <li><a href="../article/Wadi Rum Article.html">Wadi Rum</a></li>
+                      <li><a href="../article/Aqaba Article.html">Aqaba</a></li>
+                      <li><a href="../article/Umm Qais Article.html">Umm Qais</a></li>
+                      <li><a href="../article/Dana Biosphere Reserve Article.html">Dana Biosphere Reserve</a></li>
+                      <li><a href="../article/Madaba Article.html">Madaba City</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" id="list-item-1-3">
+                    <label for="list-item-1-3">Religious Sites</label>
+                    <ul>
+                      <li><a href="../article/Lot's Cave Article.html">Lot's Cave</a></li>
+                      <li><a href="../article/Mount Nebo Article.html">Mount Nebo</a></li>
+                      <li><a href="../article/Mukawir Article.html">Mukawir</a></li>
+                      <li><a href="../article/Baptism Site of Jesus Christ Article.html">Baptism Site of Jesus Christ</a></li>
+                      <li><a href="../article/King Hussein Bin Talal Mosque Article.html">King Hussein Bin Talal Mosque</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" id="list-item-1-4">
+                    <label for="list-item-1-4">Medical Sites</label>
+                    <ul>
+                      <li><a href="../article/Dead Sea Article.html">Dead Sea</a></li>
+                      <li><a href="../article/Ma'in Hot Springs Article.html">Ma'in Hot Springs</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" id="list-item-1-5">
+                    <label for="list-item-1-5">Museums</label>
+                    <ul>
+                      <li><a href="../article/The Jordan Museum Article.html">The Jordan Museum</a></li>
+                      <li><a href="../article/The Royal Automobile Museum.html">The Royal Automobile Museum</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <li><a href="">What To Do</a></li>
+          <li><a href="">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    </header>
+
+    <section class="article-section">
+      <div class="article-header">
+        <div class="article-header-overlay">&nbsp;</div>
+        <div class="content">
+          <h1 class="article-title">Umm Qais: Ruins with a View</h1>
+          <h2 class="article-subtitle">Can any sunset rival this ancient hilltop panorama?</h2>
+          <div class="article-info">
+            <div class="article-author">
+              <p><strong>Written By:&nbsp;</strong><span class="author-name">Fadi Samarneh</span></p>
+            </div>
+            <div class="article-date">
+              <p><strong>Published On:&nbsp;</strong><span class="publishing-date">February 15th 2026</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="article-container">
+        <div class="article-data">
+            <p>
+              Umm Qais is located in the far northwest corner of Jordan, in the Irbid Governorate, approximately 110–120 km north of Amman. Umm Qais, formerly known as Gadara, was renowned as a cultural centre. It hosted numerous classical poets and philosophers, including the great Theodorus, in one of his poems named Umm Qais, “a new Athens”. Its splendid hilltop view gives a great look at the Jordan Valley and the Sea of Galilee. Umm Qais includes numerous tourist attractions, such as:
+            </p>
+            <div class="img-container">
+              <img src="../img/Umm Qais Images/Umm-Qais-Main.jfif">
+              <p class="caption">Figure 01: An Image of Umm Qais</p>
+            </div>
+            <p>
+              The Umm Qais Museum is located inside one of the houses in the Ottoman village of Umm Qais. It is composed of two exhibition halls. In the first hall, numerous ceramics can be traced back to the Hellenistic period, all the way up to the Islamic period. The first hall also includes any findings related to tombs in Umm Qais. The second though is dedicated to the statuary and Roman period. 
+            </p>
+            <div class="img-container">
+              <img src="../img/Umm Qais Images/Umm-Qais-Archeological.png">
+              <p class="caption">Figure 02: Another image of Umm Qais</p>
+            </div>
+            <p>
+              Umm Qais itself is built out of stunning black basalt stones and was once a part of the famous Decapolis. The Department of Antiquities has made several excavations that have exposed and revealed numerous sites, such as the main west theatre. The location of Umm Qais allows visitors to view the Syrian Golan Heights, Mount Hermon, Lake Tiberias, and thenorthernh Palestinian plains.
+            </p>
+        </div> 
+      </div>
+    </section>
+    <footer>
+      <div class="footer-container">
+        <h3>&copy; All Rights Reserved</h3>
+        <h3>Designed and Developed By Fadi Al Samarneh</h3>
+      </div>
+    </footer>
+  </body>
+</html>
